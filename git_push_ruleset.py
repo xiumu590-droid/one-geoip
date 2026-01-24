@@ -35,8 +35,8 @@ def push_to_ruleset_branch():
         
         # 配置Git
         print("配置Git")
-        run_command('git config --global user.name "GitHub Actions"')
-        run_command('git config --global user.email "actions@github.com"')
+        run_command('git config --global user.name "xiumu590-droid"')
+        run_command('git config --global user.email "1594154674@qq.com"')
         
         # 获取当前分支名
         current_branch = subprocess.check_output("git rev-parse --abbrev-ref HEAD", shell=True).decode().strip()

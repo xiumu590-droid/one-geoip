@@ -21,18 +21,35 @@ def main():
     # 创建临时目录
     os.makedirs("temp", exist_ok=True)
     
-    # 下载IPv4和IPv6列表
-    ipv4_url = "https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/china.txt"
-    ipv6_url = "https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/china6.txt"
+    # 下载列表
+    cn_url = "https://gaoyifan.github.io/china-operator-ip/china46.txt"
+    cn-dianxin_url = "https://gaoyifan.github.io/china-operator-ip/chinanet46.txt"
+    cn-yidong_url = "https://gaoyifan.github.io/china-operator-ip/cmcc46.txt"
+    cn-liantong_url = "https://gaoyifan.github.io/china-operator-ip/unicom46.txt"
+    cn-jiaoyu_url = "https://gaoyifan.github.io/china-operator-ip/cernet46.txt"
+    cn-keji_url = "https://gaoyifan.github.io/china-operator-ip/cstnet46.txt"
+    cn-pengboshi_url = "https://gaoyifan.github.io/china-operator-ip/drpeng46.txt"
+    cn-google_url = "https://gaoyifan.github.io/china-operator-ip/googlecn46.txt"
     
-    ipv4_file = "temp/china.txt"
-    ipv6_file = "temp/china6.txt"
+    ip-cn_file = "temp/1.txt"
+    ip-dx_file = "temp/2.txt"
+    ip-lt_file = "temp/3.txt"
+    ip-jy_file = "temp/4.txt"
+    ip-kj_file = "temp/5.txt"
+    ip-pbs_file = "temp/6.txt"
+    ip-gg_file = "temp/7.txt"
+    ip-yd_file = "temp/8.txt"
     output_file = "china.txt"
     
     # 下载文件
-    download_file(ipv4_url, ipv4_file)
-    download_file(ipv6_url, ipv6_file)
-    
+    download_file(cn_url, ip-cn_file)
+    download_file(cn-dianxin_url, ip-dx_file)
+    download_file(cn-yidong_url, ip-yd_file)
+    download_file(cn-liantong_url, ip-lt_file)
+    download_file(cn-jiaoyu_url, ip-jy_file)
+    download_file(cn-keji_url, ip-kj_file)
+    download_file(cn-pengboshi_url, ip-pbs_file)
+    download_file(cn-google_url, ip-gg_file)
     # 合并文件
     with open(output_file, 'w') as outfile:
         for infile in [ipv4_file, ipv6_file]:
