@@ -52,7 +52,7 @@ def main():
     download_file(cn-google_url, ip-gg_file)
     # 合并文件
     with open(output_file, 'w') as outfile:
-        for infile in [ipv4_file, ipv6_file]:
+        for infile in  [ip-cn_file,  ip-dx_file, ip-lt_file, ip-jy_file, ip-kj_file, ip-pbs_file, ip-gg_file, ip-yd_file]:
             try:
                 with open(infile, 'r') as f:
                     for line in f:
