@@ -4,13 +4,14 @@ import requests
 def download_file(url, output_file):
     """下载文件并保存到指定路径"""
     try:
-        response = requests.get(url, stream=True)
+        response = requests.get(url, stream=True, timeout=30)
         response.raise_for_status()
-        
+
         with open(output_file, 'wb') as f:
             for chunk in response.iter_content(chunk_size=8192):
-                f.write(chunk)
-        
+                if chunk:
+                    f.write(chunk)
+
         print(f"成功下载: {url} -> {output_file}")
         return True
     except Exception as e:
@@ -18,52 +19,56 @@ def download_file(url, output_file):
         return False
 
 def main():
-    # 创建临时目录
     os.makedirs("temp", exist_ok=True)
-    
-    # 下载列表
-    cn_url = "https://china-operator-ip.yfgao.com/china46.txt"
-    cn-dianxin_url = "https://china-operator-ip.yfgao.com/chinanet46.txt"
-    cn-yidong_url = "https://raw.githubusercontent.com/china-operator-ip/cmcc46.txt"
-    cn-liantong_url = "https://china-operator-ip.yfgao.com/unicom46.txt"
-    cn-jiaoyu_url = "https://china-operator-ip.yfgao.com/cernet46.txt"
-    cn-keji_url = "https://china-operator-ip.yfgao.com/cstnet46.txt"
-    cn-pengboshi_url = "https://china-operator-ip.yfgao.com/drpeng46.txt"
-    cn-google_url = "https://china-operator-ip.yfgao.com/googlecn46.txt"
-    
-    ip-cn_file = "temp/1.txt"
-    ip-dx_file = "temp/2.txt"
-    ip-lt_file = "temp/3.txt"
-    ip-jy_file = "temp/4.txt"
-    ip-kj_file = "temp/5.txt"
-    ip-pbs_file = "temp/6.txt"
-    ip-gg_file = "temp/7.txt"
-    ip-yd_file = "temp/8.txt"
+
+    # URL 列表
+    cn_url        = "https://china-operator-ip.yfgao.com/china46.txt"
+    cn_dx_url     = "https://china-operator-ip.yfgao.com/chinanet46.txt"
+    cn_yd_url     = "https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/cmcc46.txt"
+    cn_lt_url     = "https://china-operator-ip.yfgao.com/unicom46.txt"
+    cn_jy_url     = "https://china-operator-ip.yfgao.com/cernet46.txt"
+    cn_kj_url     = "https://china-operator-ip.yfgao.com/cstnet46.txt"
+    cn_pbs_url    = "https://china-operator-ip.yfgao.com/drpeng46.txt"
+    cn_gg_url     = "https://china-operator-ip.yfgao.com/googlecn46.txt"
+
+    # 本地文件
+    ip_cn_file  = "temp/1.txt"
+    ip_dx_file  = "temp/2.txt"
+    ip_lt_file  = "temp/3.txt"
+    ip_jy_file  = "temp/4.txt"
+    ip_kj_file  = "temp/5.txt"
+    ip_pbs_file = "temp/6.txt"
+    ip_gg_file  = "temp/7.txt"
+    ip_yd_file  = "temp/8.txt"
+
     output_file = "china.txt"
-    
-    # 下载文件
-    download_file(cn_url, ip-cn_file)
-    download_file(cn-dianxin_url, ip-dx_file)
-    download_file(cn-yidong_url, ip-yd_file)
-    download_file(cn-liantong_url, ip-lt_file)
-    download_file(cn-jiaoyu_url, ip-jy_file)
-    download_file(cn-keji_url, ip-kj_file)
-    download_file(cn-pengboshi_url, ip-pbs_file)
-    download_file(cn-google_url, ip-gg_file)
-    # 合并文件
-    with open(output_file, 'w') as outfile:
-        for infile in  [ip-cn_file,  ip-dx_file, ip-lt_file, ip-jy_file, ip-kj_file, ip-pbs_file, ip-gg_file, ip-yd_file]:
-            try:
-                with open(infile, 'r') as f:
-                    for line in f:
-                        # 去掉首尾空格
-                        cleaned_line = line.strip()
-                        if cleaned_line:
-                            outfile.write(f"{cleaned_line}\n")
-            except Exception as e:
-                print(f"处理文件 {infile} 时出错: {e}")
-    
-    print(f"已合并IP列表到 {output_file}")
+
+    # 下载
+    download_file(cn_url, ip_cn_file)
+    download_file(cn_dx_url, ip_dx_file)
+    download_file(cn_yd_url, ip_yd_file)
+    download_file(cn_lt_url, ip_lt_file)
+    download_file(cn_jy_url, ip_jy_file)
+    download_file(cn_kj_url, ip_kj_file)
+    download_file(cn_pbs_url, ip_pbs_file)
+    download_file(cn_gg_url, ip_gg_file)
+
+    # 合并
+    with open(output_file, 'w', encoding='utf-8') as outfile:
+        for infile in [
+            ip_cn_file, ip_dx_file, ip_lt_file, ip_jy_file,
+            ip_kj_file, ip_pbs_file, ip_gg_file, ip_yd_file
+        ]:
+            if not os.path.exists(infile):
+                continue
+
+            with open(infile, 'r', encoding='utf-8') as f:
+                for line in f:
+                    line = line.strip()
+                    if line:
+                        outfile.write(line + "\n")
+
+    print(f"已合并 IP 列表到 {output_file}")
 
 if __name__ == "__main__":
     main()
