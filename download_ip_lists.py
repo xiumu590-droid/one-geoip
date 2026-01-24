@@ -22,14 +22,14 @@ def main():
     os.makedirs("temp", exist_ok=True)
     
     # 下载列表
-    cn_url = "https://gaoyifan.github.io/china-operator-ip/china46.txt"
-    cn-dianxin_url = "https://gaoyifan.github.io/china-operator-ip/chinanet46.txt"
-    cn-yidong_url = "https://gaoyifan.github.io/china-operator-ip/cmcc46.txt"
-    cn-liantong_url = "https://gaoyifan.github.io/china-operator-ip/unicom46.txt"
-    cn-jiaoyu_url = "https://gaoyifan.github.io/china-operator-ip/cernet46.txt"
-    cn-keji_url = "https://gaoyifan.github.io/china-operator-ip/cstnet46.txt"
-    cn-pengboshi_url = "https://gaoyifan.github.io/china-operator-ip/drpeng46.txt"
-    cn-google_url = "https://gaoyifan.github.io/china-operator-ip/googlecn46.txt"
+    cn_url = "https://china-operator-ip.yfgao.com/china46.txt"
+    cn-dianxin_url = "https://china-operator-ip.yfgao.com/chinanet46.txt"
+    cn-yidong_url = "https://raw.githubusercontent.com/china-operator-ip/cmcc46.txt"
+    cn-liantong_url = "https://china-operator-ip.yfgao.com/unicom46.txt"
+    cn-jiaoyu_url = "https://china-operator-ip.yfgao.com/cernet46.txt"
+    cn-keji_url = "https://china-operator-ip.yfgao.com/cstnet46.txt"
+    cn-pengboshi_url = "https://china-operator-ip.yfgao.com/drpeng46.txt"
+    cn-google_url = "https://china-operator-ip.yfgao.com/googlecn46.txt"
     
     ip-cn_file = "temp/1.txt"
     ip-dx_file = "temp/2.txt"
