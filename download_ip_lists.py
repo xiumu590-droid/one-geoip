@@ -29,7 +29,6 @@ def main():
     cn_jy_url     = "https://china-operator-ip.yfgao.com/cernet46.txt"
     cn_kj_url     = "https://china-operator-ip.yfgao.com/cstnet46.txt"
     cn_pbs_url    = "https://china-operator-ip.yfgao.com/drpeng46.txt"
-    cn_gg_url     = "https://china-operator-ip.yfgao.com/googlecn46.txt"
 
     # 本地文件
     ip_cn_file  = "temp/1.txt"
@@ -38,7 +37,6 @@ def main():
     ip_jy_file  = "temp/4.txt"
     ip_kj_file  = "temp/5.txt"
     ip_pbs_file = "temp/6.txt"
-    ip_gg_file  = "temp/7.txt"
     ip_yd_file  = "temp/8.txt"
 
     output_file = "china.txt"
@@ -51,13 +49,12 @@ def main():
     download_file(cn_jy_url, ip_jy_file)
     download_file(cn_kj_url, ip_kj_file)
     download_file(cn_pbs_url, ip_pbs_file)
-    download_file(cn_gg_url, ip_gg_file)
 
     # 合并
     with open(output_file, 'w', encoding='utf-8') as outfile:
         for infile in [
             ip_cn_file, ip_dx_file, ip_lt_file, ip_jy_file,
-            ip_kj_file, ip_pbs_file, ip_gg_file, ip_yd_file
+            ip_kj_file, ip_pbs_file, ip_yd_file
         ]:
             if not os.path.exists(infile):
                 continue
